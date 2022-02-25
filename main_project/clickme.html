@@ -110,11 +110,7 @@ d3.csv("amounts.csv").then(function(data) {
 </script>
 </body>
 
-
 <p> In the bar chart we look at the average points per game of eight of the players on the Philadelphia 76ers. As we can see, Tyrese Maxey and Seth Curry are two of the leading point scores in this data set while Jaden Springer is the lowest scorer. </p>
-
-
-
 
 
 
@@ -132,8 +128,6 @@ d3.csv("amounts.csv").then(function(data) {
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
-
-
 <script>
 
 // set the dimensions and margins of the graph
@@ -151,11 +145,11 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
-d3.csv("https://raw.githubusercontent.com/Marist-DATA300L111-22S/Homework2/main/main_project/xy.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(data) {
 
   // Add X axis
   var x = d3.scaleLinear()
-    .domain([0, 4])
+    .domain([0, 4000])
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
@@ -163,7 +157,7 @@ d3.csv("https://raw.githubusercontent.com/Marist-DATA300L111-22S/Homework2/main/
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, 18])
+    .domain([0, 500000])
     .range([ height, 0]);
   svg.append("g")
     .call(d3.axisLeft(y));
@@ -174,8 +168,8 @@ d3.csv("https://raw.githubusercontent.com/Marist-DATA300L111-22S/Homework2/main/
     .data(data)
     .enter()
     .append("circle")
-      .attr("cx", function (d) { return x(d.Points); } )
-      .attr("cy", function (d) { return y(d.Rebounds); } )
+      .attr("cx", function (d) { return x(d.GrLivArea); } )
+      .attr("cy", function (d) { return y(d.SalePrice); } )
       .attr("r", 1.5)
       .style("fill", "#69b3a2")
 
