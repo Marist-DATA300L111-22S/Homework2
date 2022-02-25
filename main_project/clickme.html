@@ -1,3 +1,7 @@
+
+<p>This CSV file contains basic basketball stats that are usually tracked during a basketball game. I used to be a big basketball fan and still am a fan of the game, even though I do not watch it as much anymore. The columns are pretty self explanatory. Points, rebounds, and assist represent the average over an NBA season. The nba_stats.csv file contains the values that I will be displaying using a bar chart and a scatterplot.</p>
+
+
 <script t``ype="text/javascript">
     function Upload() {
         var fileUpload = document.getElementById("fileUpload");
@@ -36,10 +40,9 @@
 <hr />
 <div id="dvCSV">
 </div>
-<p>This CSV file contains basic basketball stats that are usually tracked during a basketball game. I used to be a big basketball fan and still am a fan of the game, even though I do not watch it as much anymore. The columns are pretty self explanatory. Points, rebounds, and assist represent the average on a per game basis.</p>
 
 
-
+<p>The bar chart below shows the average amount of points scored for each player over the given season. Based on the chart we can see that only two players in this selective binch averaged over ten points pergame. </p>
 
 
 
@@ -110,12 +113,7 @@ d3.csv("amounts.csv").then(function(data) {
 </script>
 </body>
 
-<p> In the bar chart we look at the average points per game of eight of the players on the Philadelphia 76ers. As we can see, Tyrese Maxey and Seth Curry are two of the leading point scores in this data set while Jaden Springer is the lowest scorer. </p>
-
-
-
-
-
+<p> The scatter plot below represents the correlation between points and rebounds. The x-axis represents points and the y-axis represents rebounds. As we can see there is a positive correlation between points scored and the amount of rebounds someone gets in this sample dataset. </p>
 
 
 
@@ -129,6 +127,12 @@ d3.csv("amounts.csv").then(function(data) {
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 <script>
+
+
+
+    
+
+
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 60},
@@ -145,22 +149,30 @@ var svg = d3.select("#my_dataviz")
           "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/Marist-DATA300L111-22S/Homework2/main/main_project/xy.csv", function(data) {
 
   // Add X axis
   var x = d3.scaleLinear()
-    .domain([0, 4000])
+    .domain([0, 18])
+    
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
+    
     .call(d3.axisBottom(x));
+    
+
+
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, 500000])
+    .domain([0, 4])
     .range([ height, 0]);
   svg.append("g")
+    .text('points')
     .call(d3.axisLeft(y));
+    
+    
 
   // Add dots
   svg.append('g')
@@ -170,9 +182,16 @@ d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_data
     .append("circle")
       .attr("cx", function (d) { return x(d.GrLivArea); } )
       .attr("cy", function (d) { return y(d.SalePrice); } )
-      .attr("r", 1.5)
-      .style("fill", "#69b3a2")
+      .attr("r", 4)
+      .style("fill", "#0771fa")
 
 })
 
 </script>
+
+<p>The x-axis on the scatterplot represent the average points scored by each individual player. The y-axis represent the amount of rebounds recorded by that player. I have been looking for ways to add labels to the axes</p>
+
+<p>Course number: Data_300L_111_22S</p>
+<p>Styvens Smith</p>
+<p>Date: 02/26/2022</p>
+<a href="https://www.nbastuffer.com/2021-2022-nba-player-stats/">Datasource</a>
